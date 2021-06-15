@@ -1,0 +1,1 @@
+insert into categoria (codigo,nombre,fotografia ) values (:codigo, :nombre, :fotografia)

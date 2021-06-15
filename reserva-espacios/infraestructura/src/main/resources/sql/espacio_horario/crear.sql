@@ -1,0 +1,1 @@
+insert into reserva (id_horario,idespacio ) values (:idhorario, :idespacio)

@@ -1,0 +1,1 @@
+insert into aliado (nit,nombre ) values (:nit, :nombre)

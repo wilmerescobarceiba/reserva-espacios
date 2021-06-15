@@ -1,0 +1,1 @@
+select count(1) from espacio_horario where idhorario = :idhorario and  idespacio = :idespacio

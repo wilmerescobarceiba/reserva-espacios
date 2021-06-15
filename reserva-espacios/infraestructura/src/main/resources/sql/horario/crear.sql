@@ -1,0 +1,1 @@
+insert into horario (hora ) values (:hora)
