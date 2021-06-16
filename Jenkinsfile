@@ -39,7 +39,7 @@ pipeline {
             submoduleCfg: [], 
             userRemoteConfigs: [[
                 credentialsId: '99ea0565-e329-483d-a070-c7f37cb9121e', 
-                url:'https://github.com/wilmerescobarceiba/reserva-espacios/'
+                url:'https://github.com/wilmerescobarceiba/reserva-espacios.git'
             ]]
         ])
 
