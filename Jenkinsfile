@@ -49,10 +49,8 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         sh 'cd reserva-espacios/'
-        sh 'chmod +x ./gradlew'
+        sh 'chmod +x gradlew'
         sh './gradlew --b ./build.gradle test'
-        //sh './gradlew --b clean test'
-        //sh 'gradle build -x test'
       }
     }
 
@@ -71,7 +69,7 @@ pipeline {
         sh 'cd reserva-espacios/'
         //dir("${PROJECT_PATH_BACK}")
         //sh 'gradle --b ./build.gradle build -x test'
-        sh './gradlew --b ./build.gradle build -x test'
+        sh 'gradle --b ./build.gradle build -x test'
         //sh './gradlew build -x test'
       }
     }  
@@ -84,7 +82,7 @@ pipeline {
     }
     success {
       echo 'This will run only if successful'
-      junit 'infraestructura/build/test-results/test/*.xml' //RUTA DE TUS ARCHIVOS .XML
+      //junit 'infraestructura/build/test-results/test/*.xml' //RUTA DE TUS ARCHIVOS .XML
 
     }
     failure {
