@@ -1,0 +1,1 @@
+select count(distinct DAYOFWEEK(fecha)) from reserva where idespacio = :idespacio and idaliado = :idaliado and YEAR(fecha) = :anio and WEEK(fecha) = :semana and DAYOFWEEK(fecha)!=:dia

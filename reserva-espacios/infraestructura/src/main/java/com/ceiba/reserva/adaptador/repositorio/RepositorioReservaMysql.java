@@ -31,6 +31,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     
     @SqlStatement(namespace="reserva", value="reservas_dia")
     private static String reservasDia;
+    
+    @SqlStatement(namespace="reserva", value="reservasPorSemana") 
+    private static String sqlReservasPorSemana;
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -73,5 +76,16 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
         paramSource.addValue("fecha", formatter.format(fecha));
        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(reservasDia,paramSource, Long.class);
+	}
+	
+	@Override
+	public int obtenerReservasEnLaSemana(Long idespacio, Long idaliado, int anioReserva, int semanaAnioReserva, int dia) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("idespacio", idespacio);
+        paramSource.addValue("idaliado", idaliado);
+        paramSource.addValue("anio", anioReserva);
+        paramSource.addValue("semana", semanaAnioReserva);
+        paramSource.addValue("dia", dia);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlReservasPorSemana,paramSource, Integer.class);
 	}
 }

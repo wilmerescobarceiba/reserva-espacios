@@ -41,5 +41,16 @@ public interface RepositorioReserva {
 	 * @return
 	 */
 	Long cantidadReservasDia(Long idaliado, Long idespacio, Date fecha);
+	
+	/**
+	 * Se obtiene la cantidad de reservas realizadas por un aliado al mismo espacio en la misma semana
+	 * 
+	 * @param idespacio
+	 * @param idaliado
+	 * @param anioReserva
+	 * @param semanaAnioReserva
+	 * @return
+	 */
+	int obtenerReservasEnLaSemana(Long idespacio, Long idaliado, int anioReserva, int semanaAnioReserva, int dia);
 
 }

@@ -40,5 +40,12 @@ public interface RepositorioEspacio {
 	 * @return si existe o no
 	 */
 	boolean existeExcluyendoId(Long id, String nombre);
+
+	/**
+	 * Permite obtener el costo de un Espacio
+	 * @param idespacio
+	 * @return
+	 */
+	Double obtenerCostoPorId(Long id);
 	
 }

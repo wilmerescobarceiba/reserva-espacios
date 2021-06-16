@@ -1,0 +1,1 @@
+select costo from espacio where id = :id

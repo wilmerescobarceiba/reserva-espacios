@@ -5,8 +5,10 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import java.util.Date;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Reserva {
 	private static final String SE_DEBE_INGRESAR_FECHA = "Se debe ingresar una fecha";
 	private static final String SE_DEBE_INGRESAR_ID_ALIADO = "Se debe ingresar el id del aliado";

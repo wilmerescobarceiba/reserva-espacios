@@ -27,6 +27,9 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
 
     @SqlStatement(namespace="espacio", value="existeExcluyendoId") 
     private static String sqlExisteExcluyendoId;
+    
+    @SqlStatement(namespace="espacio", value="costoPorId") 
+    private static String sqlCostoPorId;   
 
     public RepositorioEspacioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -41,7 +44,6 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
     public void eliminar(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
     }
 
@@ -65,4 +67,11 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
         paramSource.addValue("nombre", nombre);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
     }
+
+	@Override
+	public Double obtenerCostoPorId(Long id) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("id", id);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlCostoPorId,paramSource, Double.class);
+	}
 }
