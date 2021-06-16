@@ -24,9 +24,6 @@ pipeline {
       JDK13_Centos
       JDK14_Centos
 */
-  environment {
-    PROJECT_PATH_BACK = 'reserva-espacios'
-  }
 
   //Aquí comienzan los “items” del Pipeline
   stages{
@@ -51,10 +48,11 @@ pipeline {
     
     stage('Compile & Unit Tests') {
       steps{
-        dir("${PROJECT_PATH_BACK}")
+        sh 'cd reserva-espacios/'
         sh 'chmod +x ./gradlew'
-        //sh './gradlew --b ./build.gradle test'
-        sh './gradlew --b clean test'
+        sh './gradlew --b ./build.gradle test'
+        //sh './gradlew --b clean test'
+        //sh 'gradle build -x test'
       }
     }
 
@@ -70,10 +68,11 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        //sh 'cd reserva-espacios/'
-          dir("${PROJECT_PATH_BACK}")
+        sh 'cd reserva-espacios/'
+        //dir("${PROJECT_PATH_BACK}")
         //sh 'gradle --b ./build.gradle build -x test'
-        sh './gradlew build -x test'
+        sh './gradlew --b ./build.gradle build -x test'
+        //sh './gradlew build -x test'
       }
     }  
 
