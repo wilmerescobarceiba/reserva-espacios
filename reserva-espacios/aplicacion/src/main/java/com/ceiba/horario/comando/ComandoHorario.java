@@ -1,5 +1,7 @@
 package com.ceiba.horario.comando;
 
+import com.ceiba.horario.comando.type.HoraType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +14,5 @@ import lombok.Setter;
 public class ComandoHorario{
 
 	private Long id;
-	private String hora;
+	private HoraType hora;
 }
