@@ -1,2 +1,2 @@
-select id,fecha,idaliado,idespacio
+select id,fecha,idaliado,idespacio, costototal, idhorario
 from reserva

@@ -20,7 +20,7 @@ public class ServicioActualizarReserva {
     }
 
     private void validarExistenciaPrevia(Reserva reserva) {
-        boolean existe = this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdaliado(), reserva.getIdespacio());
+        boolean existe = this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(), reserva.getIdhorario());
         if(existe) {
             throw new ExcepcionDuplicidad(LA_RESERVA_YA_EXISTE_EN_EL_SISTEMA);
         }

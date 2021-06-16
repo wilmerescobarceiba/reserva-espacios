@@ -1,5 +1,6 @@
 package com.ceiba.reserva.adaptador.repositorio;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -27,6 +28,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
     @SqlStatement(namespace="reserva", value="existe")
     private static String sqlExiste;
+    
+    @SqlStatement(namespace="reserva", value="reservas_dia")
+    private static String reservasDia;
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -46,11 +50,12 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     }
 
     @Override
-    public boolean existe(Date fecha, Long idaliado, Long idespacio) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("fecha", fecha);
-        paramSource.addValue("idaliado", idaliado);
+    public boolean existe(Date fecha, Long idespacio, Long idhorario) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();        
         paramSource.addValue("idespacio", idespacio);
+        paramSource.addValue("idhorario", idhorario);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
+        paramSource.addValue("fecha", formatter.format(fecha));
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
@@ -59,4 +64,14 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     public void actualizar(Reserva reserva) {
         this.customNamedParameterJdbcTemplate.actualizar(reserva, sqlActualizar);
     }
+
+	@Override
+	public Long cantidadReservasDia(Long idaliado, Long idespacio, Date fecha) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("idaliado", idaliado);
+        paramSource.addValue("idespacio", idespacio);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
+        paramSource.addValue("fecha", formatter.format(fecha));
+       return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(reservasDia,paramSource, Long.class);
+	}
 }

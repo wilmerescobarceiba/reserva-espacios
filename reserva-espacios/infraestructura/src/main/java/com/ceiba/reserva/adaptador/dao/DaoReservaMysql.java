@@ -15,7 +15,7 @@ public class DaoReservaMysql implements DaoReserva {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="reserva", value="listar")
-    private static String sqlListar;
+    private static String sqlListar;  
 
     public DaoReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -25,4 +25,5 @@ public class DaoReservaMysql implements DaoReserva {
     public List<DtoReserva> listar() {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoReserva());
     }
+    
 }

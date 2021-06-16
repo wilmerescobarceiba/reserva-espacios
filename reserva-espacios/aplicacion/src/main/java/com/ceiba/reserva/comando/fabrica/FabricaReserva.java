@@ -13,7 +13,9 @@ public class FabricaReserva {
         		comandoReserva.getId(),
         		comandoReserva.getFecha(),
         		comandoReserva.getIdaliado(),
-        		comandoReserva.getIdespacio()
+        		comandoReserva.getIdespacio(),
+        		comandoReserva.getCostototal(),
+        		comandoReserva.getIdhorario()
         );
     }
 

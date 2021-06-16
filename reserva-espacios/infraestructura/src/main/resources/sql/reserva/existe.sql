@@ -1,1 +1,1 @@
-select count(1) from reserva where idaliado = :idaliado and  idespacio = :idespacio and  fecha = :fecha
+select count(1) from reserva where idespacio = :idespacio and  fecha = :fecha and idhorario = :idhorario

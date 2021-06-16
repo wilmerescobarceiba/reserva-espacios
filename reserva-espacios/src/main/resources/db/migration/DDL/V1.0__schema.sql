@@ -45,8 +45,11 @@ create table reserva (
 fecha date not null,
 idaliado int(11) not null,
 idespacio int(11) not null,
+costototal double not null,
+idhorario int(11) not null,
  primary key (id),
  foreign key (idaliado) references aliado(id),
+ foreign key (idhorario) references horario(id),
  foreign key (idespacio) references espacio(id)
 );
 

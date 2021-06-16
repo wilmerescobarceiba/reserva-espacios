@@ -1,1 +1,1 @@
-insert into reserva (fecha,idaliado,idespacio ) values (:fecha, :idaliado, :idespacio)
+insert into reserva (fecha,idaliado,idespacio, costototal, idhorario ) values (:fecha, :idaliado, :idespacio, :costototal, :idhorario)

@@ -8,13 +8,12 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class DtoReserva {
-	
+
 	private Long id;
-		
-	private Date fecha;	
-		
+	private Date fecha;
 	private Long idaliado;
-		
 	private Long idespacio;
+	private Double costototal;
+	private Long idhorario;
 
 }

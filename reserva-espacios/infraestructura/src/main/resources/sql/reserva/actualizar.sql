@@ -1,5 +1,7 @@
 update reserva
 set fecha = :fecha,
 	idaliado = :idaliado,
-	idespacio = :idespacio
+	idespacio = :idespacio,
+	costototal = :costototal,
+	idhorario = :idhorario
 where id = :id

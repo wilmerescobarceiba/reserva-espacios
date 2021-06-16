@@ -12,13 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComandoReserva{
-
-	private Long id;
-	
-	private Date fecha;	
-		
-	private Long idaliado;
-		
+	private Long id;	
+	private Date fecha;			
+	private Long idaliado;		
 	private Long idespacio;
+	private Double costototal;
+	private Long idhorario;
 
 }

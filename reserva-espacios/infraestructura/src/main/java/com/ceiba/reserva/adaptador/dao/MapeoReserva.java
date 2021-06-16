@@ -18,8 +18,10 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
         Date fecha = resultSet.getDate("fecha");
         Long idaliado = resultSet.getLong("idaliado");
         Long idespacio = resultSet.getLong("idespacio");
+        Long idhorario = resultSet.getLong("idhorario");
+        Double costototal = resultSet.getDouble("costototal");
 
-        return new DtoReserva(id,fecha,idaliado ,idespacio);
+        return new DtoReserva(id,fecha,idaliado ,idespacio, costototal, idhorario);
     }
 
 }

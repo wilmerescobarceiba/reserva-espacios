@@ -33,6 +33,13 @@ public interface RepositorioReserva {
 	 * @param nombre
 	 * @return si existe o no
 	 */
-	boolean existe(Date fecha, Long idaliado, Long idespacio);
+	boolean existe(Date fecha, Long idespacio, Long idhorario);
+	
+	/**
+	 * Permite calcular la cantidad de reservas hechas por un aliado en un día
+	 * @param idaliado
+	 * @return
+	 */
+	Long cantidadReservasDia(Long idaliado, Long idespacio, Date fecha);
 
 }
