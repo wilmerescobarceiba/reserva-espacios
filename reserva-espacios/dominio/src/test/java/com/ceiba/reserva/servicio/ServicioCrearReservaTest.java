@@ -9,14 +9,8 @@ import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ReservaTestDataBuilder;
 
-public class ServicioCrearReservaTest {
-    /*@Test
-    public void validarClaveLongitudMenor4Test() {
-        // arrange
-        UsuarioTestDataBuilder usuarioTestDataBuilder = new UsuarioTestDataBuilder().conClave("124");
-        // act - assert
-        BasePrueba.assertThrows(() -> usuarioTestDataBuilder.build(), ExcepcionLongitudValor.class, "La clave debe tener una longitud mayor o igual a 4");
-    }*/
+public class ServicioCrearReservaTest {	
+	
 
     @Test
     public void validarReservaExistenciaPreviaTest() {
@@ -30,4 +24,30 @@ public class ServicioCrearReservaTest {
         // act - assert
         BasePrueba.assertThrows(() -> servicioActuReserva.ejecutar(reserva), ExcepcionDuplicidad.class,"La reserva ya existe en el sistema");
     }
+    
+    public void validarSalaYaReservada() {
+
+    	
+    }
+    
+    public void validarTiempoMaximo5HPorDia() {
+    	
+    }
+    
+    public void validarCostoReservaHorasAdicionales() {
+    	
+    }
+    
+    public void validarReservaEnHorarioOficina() {
+    	
+    }
+    
+    public void validarReservaMayorDosDias() {
+    	
+    }
+    
+    public void validarReservaFinDeSemana() {
+    	
+    }
+    
 }
