@@ -67,6 +67,8 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
+        sh 'cd reserva-espacios/'
+        sh 'gradle --b ./build.gradle build -x test'
       }
     }  
 
