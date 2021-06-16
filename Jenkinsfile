@@ -10,6 +10,10 @@ pipeline {
  	    disableConcurrentBuilds()
   }
 
+  environment {
+        PROJECT_PATH_BACK = './reserva-espacios/'
+	}
+
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
@@ -49,9 +53,11 @@ pipeline {
     
     stage('Compile & Unit Tests') {
       steps{
-        sh 'cd reserva-espacios/'
-        sh 'chmod +x gradlew'
-        sh './gradlew --b ./build.gradle test'
+        dir("${PROJECT_PATH_BACK}")
+        {
+          sh 'chmod +x gradlew'
+          sh './gradlew --b ./build.gradle test'
+        }        
       }
     }
 
@@ -66,12 +72,10 @@ pipeline {
 
     stage('Build') {
       steps {
-        echo "------------>Build<------------"
-        sh 'cd reserva-espacios/'
-        //dir("${PROJECT_PATH_BACK}")
-        //sh 'gradle --b ./build.gradle build -x test'
-        sh 'gradle --b ./build.gradle build -x test'
-        //sh './gradlew build -x test'
+        dir("${PROJECT_PATH_BACK}")
+        {
+          sh 'gradle build -x test'
+        }
       }
     }  
 
