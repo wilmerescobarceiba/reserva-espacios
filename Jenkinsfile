@@ -50,7 +50,7 @@ pipeline {
       steps{
         echo "------------>Compile & Unit Tests<------------"
         sh 'cd reserva-espacios/'
-        sh 'chmod +x gradlew'
+        sh 'chmod +x ./gradlew'
         sh './gradlew --b ./build.gradle test'
       }
     }
