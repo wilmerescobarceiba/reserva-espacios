@@ -7,7 +7,7 @@ pipeline {
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
     	buildDiscarder(logRotator(numToKeepStr: '3'))
- 	disableConcurrentBuilds()
+ 	    disableConcurrentBuilds()
   }
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
@@ -24,6 +24,9 @@ pipeline {
       JDK13_Centos
       JDK14_Centos
 */
+  environment {
+    PROJECT_PATH_BACK = 'reserva-espacios'
+  }
 
   //Aquí comienzan los “items” del Pipeline
   stages{
@@ -48,10 +51,10 @@ pipeline {
     
     stage('Compile & Unit Tests') {
       steps{
-        echo "------------>Compile & Unit Tests<------------"
-        sh 'cd reserva-espacios/'
+        dir("${PROJECT_PATH_BACK}")
         sh 'chmod +x ./gradlew'
-        sh './gradlew --b ./build.gradle test'
+        //sh './gradlew --b ./build.gradle test'
+        sh './gradlew --b clean test'
       }
     }
 
@@ -67,8 +70,10 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh 'cd reserva-espacios/'
-        sh 'gradle --b ./build.gradle build -x test'
+        //sh 'cd reserva-espacios/'
+          dir("${PROJECT_PATH_BACK}")
+        //sh 'gradle --b ./build.gradle build -x test'
+        sh './gradlew build -x test'
       }
     }  
 
