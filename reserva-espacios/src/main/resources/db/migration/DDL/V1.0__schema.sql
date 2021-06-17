@@ -36,8 +36,7 @@ capacidad int(11) not null,
 costo double not null,
 fotografia text not null,
 idcategoria int(11) not null,
- primary key (id),
- foreign key (idcategoria) references categoria(id)
+ primary key (id)
 );
 
 create table reserva (
@@ -47,17 +46,12 @@ idaliado int(11) not null,
 idespacio int(11) not null,
 costototal double not null,
 idhorario int(11) not null,
- primary key (id),
- foreign key (idaliado) references aliado(id),
- foreign key (idhorario) references horario(id),
- foreign key (idespacio) references espacio(id)
+ primary key (id)
 );
 
 create table espacio_horario (
  id int(11) not null auto_increment,
 idespacio int(11) not null,
 idhorario int(11) not null,
- primary key (id),
- foreign key (idhorario) references horario(id),
- foreign key (idespacio) references espacio(id)
+ primary key (id)
 );
