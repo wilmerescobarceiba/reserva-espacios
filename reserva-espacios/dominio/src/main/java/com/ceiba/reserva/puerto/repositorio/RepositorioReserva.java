@@ -53,4 +53,6 @@ public interface RepositorioReserva {
 	 */
 	int obtenerReservasEnLaSemana(Long idespacio, Long idaliado, int anioReserva, int semanaAnioReserva, int dia);
 
+	int obtenerHoraDelDia();
+
 }

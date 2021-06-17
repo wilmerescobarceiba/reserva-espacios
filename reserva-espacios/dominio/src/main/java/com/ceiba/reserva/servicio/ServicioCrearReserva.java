@@ -37,14 +37,12 @@ public class ServicioCrearReserva {
 		validarExistenciaPrevia(reserva);
 		validarMaximo5hDia(reserva);
 		reserva.setCostototal(calcularCostoTotal(reserva));
-
 		return this.repositorioReserva.crear(reserva);
 	}
 
 	private void validarExistenciaPrevia(Reserva reserva) {
-		boolean existe = this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(),
-				reserva.getIdhorario());
-		if (existe) {
+		if(this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(),
+				reserva.getIdhorario())){
 			throw new ExcepcionDuplicidad(LA_RESERVA_YA_EXISTE_EN_EL_SISTEMA);
 		}
 	}
@@ -54,7 +52,7 @@ public class ServicioCrearReserva {
 	 * - 05:00 PM
 	 */
 	private void validarReservaEnHorarioOficina() {
-		int horaDelDia = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		int horaDelDia = this.repositorioReserva.obtenerHoraDelDia();
 
 		if (horaDelDia < HORA_INICIO_DIA || (horaDelDia > HORA_FIN_DIA && horaDelDia < HORA_INICIO_TARDE)
 				|| horaDelDia > HORA_FIN_TARDE) {
@@ -70,7 +68,7 @@ public class ServicioCrearReserva {
 	private void validarMaximo5hDia(Reserva reserva) {
 		Long cantidad = this.repositorioReserva.cantidadReservasDia(reserva.getIdaliado(), reserva.getIdespacio(),
 				reserva.getFecha());
-		if (cantidad.equals(CANTIDAD_MAXIMA_RESERVAS_DIA)) {
+		if (cantidad>=CANTIDAD_MAXIMA_RESERVAS_DIA) {
 			throw new ExcepcionValorInvalido(CANTIDAD_MAXIMA_RESERVAS_SUPERADA);
 		}
 	}
@@ -82,7 +80,7 @@ public class ServicioCrearReserva {
 	 * @param reserva
 	 * @return
 	 */
-	private Double calcularCostoTotal(Reserva reserva) {
+	public Double calcularCostoTotal(Reserva reserva) {
 		Double costoEspacio = this.repositorioEspacio.obtenerCostoPorId(reserva.getIdespacio());
 		Long cantidadReservasDia = this.repositorioReserva.cantidadReservasDia(reserva.getIdaliado(),
 				reserva.getIdespacio(), reserva.getFecha());

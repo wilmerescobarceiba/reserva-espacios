@@ -13,7 +13,6 @@ public class MapeoReserva implements RowMapper<DtoReserva>, MapperResult {
 
     @Override
     public DtoReserva mapRow(ResultSet resultSet, int rowNum) throws SQLException {
-
         Long id = resultSet.getLong("id");
         Date fecha = resultSet.getDate("fecha");
         Long idaliado = resultSet.getLong("idaliado");

@@ -24,7 +24,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @WebMvcTest(ComandoControladorUsuario.class)
-//@Sql("/test-datos.sql")
 public class ComandoControladorEspacioTest {
 
 	@Autowired

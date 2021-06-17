@@ -22,7 +22,7 @@ public class Reserva {
 	private Double costototal;
 	private Long idhorario;
 	
-
+public Reserva(){}
 	public Reserva(Long id, Date fecha, Long idaliado, Long idespacio, Double costototal, Long idhorario) {
 		validarObligatorio(fecha, SE_DEBE_INGRESAR_FECHA);
 		validarObligatorio(idaliado, SE_DEBE_INGRESAR_ID_ALIADO);

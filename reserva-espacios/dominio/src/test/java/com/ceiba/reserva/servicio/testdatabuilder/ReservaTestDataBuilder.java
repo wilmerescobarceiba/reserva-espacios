@@ -36,6 +36,11 @@ public class ReservaTestDataBuilder {
 		return this;
 	}
 
+	public ReservaTestDataBuilder conFecha(Date fecha) {
+		this.fecha = fecha;
+		return this;
+	}
+
 	public ReservaTestDataBuilder conId(Long id) {
 		this.id = id;
 		return this;

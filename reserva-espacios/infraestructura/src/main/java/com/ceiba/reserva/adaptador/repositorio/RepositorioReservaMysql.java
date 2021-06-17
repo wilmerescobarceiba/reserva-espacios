@@ -1,6 +1,7 @@
 package com.ceiba.reserva.adaptador.repositorio;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -88,4 +89,9 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         paramSource.addValue("dia", dia);
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlReservasPorSemana,paramSource, Integer.class);
 	}
+
+    @Override
+    public int obtenerHoraDelDia() {
+        return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+    }
 }

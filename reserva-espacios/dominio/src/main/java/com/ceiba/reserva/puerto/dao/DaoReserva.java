@@ -6,4 +6,5 @@ import com.ceiba.reserva.modelo.dto.DtoReserva;
 
 public interface DaoReserva {
 	List<DtoReserva> listar();
+    DtoReserva buscar(Long id);
 }
