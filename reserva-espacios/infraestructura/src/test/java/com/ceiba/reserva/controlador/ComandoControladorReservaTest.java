@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,15 @@ import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
 import com.ceiba.usuario.controlador.ComandoControladorUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Calendar;
+
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationMock.class)
 @WebMvcTest(ComandoControladorUsuario.class)
 public class ComandoControladorReservaTest {
+
+	private static int HORA_INICIO_CREACION_RESERVA = 7;
+	private static int HORA_FINAL_CREACION_RESERVA = 17;
 
 	@Autowired
 	private ObjectMapper objectMapper;
@@ -32,22 +38,34 @@ public class ComandoControladorReservaTest {
 	@Autowired
 	private MockMvc mocMvc;
 
+	private static ComandoReserva reserva;
+
+	@BeforeClass
+	public static void inicializar(){
+		reserva = new ComandoReservaTestDataBuilder().build();
+	}
+
 	@Test
 	public void testCrearReserva() throws Exception {
-		ComandoReserva reserva = new ComandoReservaTestDataBuilder().build();
 
-		mocMvc.perform(post("/reservas").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isOk())
-				.andExpect(content().json("{'valor': 1}"));
+		int horaDelDia = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+		if (horaDelDia >= HORA_INICIO_CREACION_RESERVA && horaDelDia<= HORA_FINAL_CREACION_RESERVA) {
+			mocMvc.perform(post("/reservas").contentType(MediaType.APPLICATION_JSON)
+					.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isOk())
+					.andExpect(content().json("{'valor': 1}"));
+		}else{
+			mocMvc.perform(post("/reservas").contentType(MediaType.APPLICATION_JSON)
+					.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isBadRequest());
+					//.andExpect(content().json("{'valor': 1}"));
+		}
 	}
 
 	@Test
 	public void actualizarReserva() throws Exception {
 		Long id = 1L;
-		ComandoReserva Reserva = new ComandoReservaTestDataBuilder().build();
-
 		mocMvc.perform(put("/reservas/{id}", id).contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(Reserva))).andExpect(status().isOk());
+				.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isOk());
 	}
 
 	@Test
@@ -57,5 +75,4 @@ public class ComandoControladorReservaTest {
 				delete("/reservas/{id}", id).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());
 	}
-
 }
