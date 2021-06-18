@@ -4,6 +4,7 @@ import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.espacio.puerto.repositorio.RepositorioEspacio;
+import com.ceiba.reserva.modelo.dto.DtoReserva;
 import com.ceiba.reserva.modelo.entidad.Reserva;
 import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ReservaTestDataBuilder;
@@ -16,6 +17,8 @@ import org.mockito.Mockito;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearReservaTest {
 
@@ -158,5 +161,16 @@ public class ServicioCrearReservaTest {
 
         servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioEspacio);
         Assert.assertEquals(costoTotal, servicioCrearReserva.calcularCostoTotal(reserva));
+    }
+
+    @Test
+    public void validarCreacionDto(){
+        DtoReserva reservaDto = new DtoReserva(
+        1l,new Date(),1l,2l,10000d,3l);
+
+        assertEquals(1l, reservaDto.getId().longValue());
+        assertEquals(1l, reservaDto.getIdaliado().longValue());
+        assertEquals(10000d, reservaDto.getCostototal().doubleValue());
+        assertEquals(3l, reservaDto.getIdhorario().doubleValue());
     }
 }
