@@ -14,7 +14,7 @@ public interface RepositorioEspacio {
 	/**
 	 * Permite actualizar un espacio
 	 * 
-	 * @param usuario
+	 * @param espacio
 	 */
 	void actualizar(Espacio espacio);
 

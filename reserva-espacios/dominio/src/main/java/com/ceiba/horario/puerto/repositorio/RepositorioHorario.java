@@ -15,7 +15,7 @@ public interface RepositorioHorario {
 	/**
 	 * Permite actualizar un horario
 	 * 
-	 * @param usuario
+	 * @param horario
 	 */
 	void actualizar(Horario horario);
 

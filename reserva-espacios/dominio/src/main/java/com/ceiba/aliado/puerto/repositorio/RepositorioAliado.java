@@ -12,7 +12,7 @@ public interface RepositorioAliado {
 
     /**
      * Permite actualizar un aliado
-     * @param usuario
+     * @param aliado
      */
     void actualizar(Aliado aliado);
 

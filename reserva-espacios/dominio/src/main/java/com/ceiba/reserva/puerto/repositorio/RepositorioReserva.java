@@ -16,7 +16,7 @@ public interface RepositorioReserva {
 	/**
 	 * Permite actualizar un reserva
 	 * 
-	 * @param usuario
+	 * @param reserva
 	 */
 	void actualizar(Reserva reserva);
 

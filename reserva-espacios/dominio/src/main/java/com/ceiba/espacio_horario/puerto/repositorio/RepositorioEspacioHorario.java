@@ -14,7 +14,7 @@ public interface RepositorioEspacioHorario {
 	/**
 	 * Permite actualizar un espacioHorario
 	 * 
-	 * @param usuario
+	 * @param espacioHorario
 	 */
 	void actualizar(EspacioHorario espacioHorario);
 

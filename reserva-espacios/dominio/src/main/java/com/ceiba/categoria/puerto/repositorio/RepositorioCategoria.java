@@ -14,7 +14,7 @@ public interface RepositorioCategoria {
 	/**
 	 * Permite actualizar un categoria
 	 * 
-	 * @param usuario
+	 * @param categoria
 	 */
 	void actualizar(Categoria categoria);
 
