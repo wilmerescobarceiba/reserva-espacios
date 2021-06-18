@@ -43,8 +43,8 @@ public class ServicioCrearReservaTest {
     @Test
     public void validarReservaExistenciaPreviaTest() {
         Mockito.when(repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(), reserva.getIdhorario())).thenReturn(true);
-        ServicioActualizarReserva servicioActuReserva = new ServicioActualizarReserva(repositorioReserva);
-        BasePrueba.assertThrows(() -> servicioActuReserva.ejecutar(reserva), ExcepcionDuplicidad.class, "La reserva ya existe en el sistema");
+        ServicioCrearReserva servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioEspacio);
+        BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva), ExcepcionDuplicidad.class, "La reserva ya existe en el sistema");
     }
 
     @Test

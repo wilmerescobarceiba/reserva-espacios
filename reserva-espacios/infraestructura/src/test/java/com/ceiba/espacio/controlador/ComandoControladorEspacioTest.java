@@ -5,6 +5,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,12 +38,12 @@ public class ComandoControladorEspacioTest {
 
 		mocMvc.perform(post("/espacios").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(espacio))).andExpect(status().isOk())
-				.andExpect(content().json("{'valor': 2}"));
+				.andExpect(jsonPath("$.valor").exists());
 	}
 
 	@Test
 	public void actualizarEspacio() throws Exception {
-		Long id = 2L;
+		Long id = 3L;
 		ComandoEspacio Espacio = new ComandoEspacioTestDataBuilder().build();
 
 		mocMvc.perform(put("/espacios/{id}", id).contentType(MediaType.APPLICATION_JSON)
@@ -51,7 +52,7 @@ public class ComandoControladorEspacioTest {
 
 	@Test
 	public void eliminarEspacio() throws Exception {
-		Long id = 2L;
+		Long id = 3L;
 		mocMvc.perform(
 				delete("/espacios/{id}", id).contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk());

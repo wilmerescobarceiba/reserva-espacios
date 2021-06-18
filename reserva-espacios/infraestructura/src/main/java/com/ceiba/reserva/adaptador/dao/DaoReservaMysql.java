@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
+import com.ceiba.infraestructura.excepcion.ExcepcionTecnica;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 import com.ceiba.reserva.modelo.dto.DtoReserva;
@@ -37,7 +38,7 @@ public class DaoReservaMysql implements DaoReserva {
         try {
         	return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscar, parameterSource, new MapeoReserva());
 		} catch (Exception e) {
-			return new DtoReserva();
+			throw new ExcepcionTecnica("El id no pertenece a ninguna reserva");
 		}         
     }
 

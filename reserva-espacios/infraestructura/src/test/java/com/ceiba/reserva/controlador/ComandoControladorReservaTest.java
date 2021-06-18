@@ -22,6 +22,8 @@ import com.ceiba.ApplicationMock;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationMock.class)
@@ -61,7 +63,7 @@ public class ComandoControladorReservaTest {
 
 	@Test
 	public void actualizarReserva() throws Exception {
-		Long id = 1L;
+		Long id = 10L;
 		mocMvc.perform(put("/reservas/{id}", id).contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isOk());
 	}
