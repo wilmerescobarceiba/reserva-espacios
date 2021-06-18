@@ -16,14 +16,9 @@ public class ServicioCrearEspacioHorario {
     }
 
     public Long ejecutar(EspacioHorario espacioHorario) {
-        validarExistenciaPrevia(espacioHorario);
-        return this.repositorioEspacioHorario.crear(espacioHorario);
-    }
-
-    private void validarExistenciaPrevia(EspacioHorario espacioHorario) {
-        boolean existe = this.repositorioEspacioHorario.existe(espacioHorario.getIdhorario(),espacioHorario.getIdespacio());
-        if(existe) {
+        if(this.repositorioEspacioHorario.existe(espacioHorario.getIdhorario(),espacioHorario.getIdespacio())) {
             throw new ExcepcionDuplicidad(EL_ESPACIO_HORARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        return this.repositorioEspacioHorario.crear(espacioHorario);
     }
 }

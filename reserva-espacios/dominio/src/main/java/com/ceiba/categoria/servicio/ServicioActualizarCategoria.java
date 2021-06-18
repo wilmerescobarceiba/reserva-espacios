@@ -15,14 +15,9 @@ public class ServicioActualizarCategoria {
     }
 
     public void ejecutar(Categoria categoria) {
-        validarExistenciaPrevia(categoria);
-        this.repositorioCategoria.actualizar(categoria);
-    }
-
-    private void validarExistenciaPrevia(Categoria categoria) {
-        boolean existe = this.repositorioCategoria.existeExcluyendoId(categoria.getId(),categoria.getNombre());
-        if(existe) {
+        if(this.repositorioCategoria.existeExcluyendoId(categoria.getId(),categoria.getNombre())) {
             throw new ExcepcionDuplicidad(LA_CATEGORIA_YA_EXISTE_EN_EL_SISTEMA);
         }
+        this.repositorioCategoria.actualizar(categoria);
     }
 }

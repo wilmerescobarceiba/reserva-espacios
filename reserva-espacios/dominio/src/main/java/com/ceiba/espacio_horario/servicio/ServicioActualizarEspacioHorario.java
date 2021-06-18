@@ -15,14 +15,9 @@ public class ServicioActualizarEspacioHorario {
     }
 
     public void ejecutar(EspacioHorario espacioHorario) {
-        validarExistenciaPrevia(espacioHorario);
-        this.repositorioEspacioHorario.actualizar(espacioHorario);
-    }
-
-    private void validarExistenciaPrevia(EspacioHorario espacioHorario) {
-        boolean existe = this.repositorioEspacioHorario.existe(espacioHorario.getIdhorario(),espacioHorario.getIdespacio());
-        if(existe) {
+        if(this.repositorioEspacioHorario.existe(espacioHorario.getIdhorario(),espacioHorario.getIdespacio())) {
             throw new ExcepcionDuplicidad(LA_ESPACIO_HORARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        this.repositorioEspacioHorario.actualizar(espacioHorario);
     }
 }

@@ -16,14 +16,10 @@ public class ServicioCrearEspacio {
     }
 
     public Long ejecutar(Espacio espacio) {
-        validarExistenciaPrevia(espacio);
+        if(this.repositorioEspacio.existe(espacio.getNombre())) {
+            throw new ExcepcionDuplicidad(EL_ESPACIO_YA_EXISTE_EN_EL_SISTEMA);
+        }
         return this.repositorioEspacio.crear(espacio);
     }
 
-    private void validarExistenciaPrevia(Espacio espacio) {
-        boolean existe = this.repositorioEspacio.existe(espacio.getNombre());
-        if(existe) {
-            throw new ExcepcionDuplicidad(EL_ESPACIO_YA_EXISTE_EN_EL_SISTEMA);
-        }
-    }
 }

@@ -16,14 +16,9 @@ public class ServicioCrearAliado {
     }
 
     public Long ejecutar(Aliado aliado) {
-        validarExistenciaPrevia(aliado);
-        return this.repositorioAliado.crear(aliado);
-    }
-
-    private void validarExistenciaPrevia(Aliado aliado) {
-        boolean existe = this.repositorioAliado.existe(aliado.getNombre());
-        if(existe) {
+        if(this.repositorioAliado.existe(aliado.getNombre())) {
             throw new ExcepcionDuplicidad(EL_ALIADO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        return this.repositorioAliado.crear(aliado);
     }
 }

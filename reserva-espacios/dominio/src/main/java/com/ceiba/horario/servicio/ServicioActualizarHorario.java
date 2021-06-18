@@ -14,15 +14,10 @@ public class ServicioActualizarHorario {
         this.repositorioHorario = repositorioHorario;
     }
 
-    public void ejecutar(Horario horario) {
-        validarExistenciaPrevia(horario);
-        this.repositorioHorario.actualizar(horario);
-    }
-
-    private void validarExistenciaPrevia(Horario horario) {
-        boolean existe = this.repositorioHorario.existeExcluyendoId(horario.getId(),horario.getHora());
-        if(existe) {
+    public void ejecutar(Horario horario) {    	
+        if(this.repositorioHorario.existeExcluyendoId(horario.getId(),horario.getHora())) {
             throw new ExcepcionDuplicidad(LA_HORARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        this.repositorioHorario.actualizar(horario);
     }
 }

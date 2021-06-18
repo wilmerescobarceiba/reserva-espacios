@@ -16,14 +16,9 @@ public class ServicioCrearCategoria {
     }
 
     public Long ejecutar(Categoria categoria) {
-        validarExistenciaPrevia(categoria);
-        return this.repositorioCategoria.crear(categoria);
-    }
-
-    private void validarExistenciaPrevia(Categoria categoria) {
-        boolean existe = this.repositorioCategoria.existe(categoria.getNombre());
-        if(existe) {
+        if(this.repositorioCategoria.existe(categoria.getNombre())) {
             throw new ExcepcionDuplicidad(EL_CATEGORIA_YA_EXISTE_EN_EL_SISTEMA);
         }
+        return this.repositorioCategoria.crear(categoria);
     }
 }

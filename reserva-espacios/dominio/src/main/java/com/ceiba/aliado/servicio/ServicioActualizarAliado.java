@@ -15,14 +15,9 @@ public class ServicioActualizarAliado {
     }
 
     public void ejecutar(Aliado aliado) {
-        validarExistenciaPrevia(aliado);
-        this.repositorioAliado.actualizar(aliado);
-    }
-
-    private void validarExistenciaPrevia(Aliado aliado) {
-        boolean existe = this.repositorioAliado.existeExcluyendoId(aliado.getId(), aliado.getNombre());
-        if(existe) {
+        if(this.repositorioAliado.existeExcluyendoId(aliado.getId(), aliado.getNombre())) {
             throw new ExcepcionDuplicidad(EL_ALIADO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        this.repositorioAliado.actualizar(aliado);
     }
 }
