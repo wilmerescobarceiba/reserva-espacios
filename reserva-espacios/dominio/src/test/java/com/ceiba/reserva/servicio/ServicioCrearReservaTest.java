@@ -174,5 +174,8 @@ public class ServicioCrearReservaTest {
         assertEquals(10000d, reservaDto.getCostototal().doubleValue());
         assertEquals(3l, reservaDto.getIdhorario().doubleValue());
         Assert.assertNotNull(reservaDto.getFecha());
+
+        reservaDto = new DtoReserva();
+        Assert.assertNotNull(reservaDto);
     }
 }
