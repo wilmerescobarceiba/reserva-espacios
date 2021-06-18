@@ -1,4 +1,4 @@
-package com.ceiba.reserva.servicio.testdatabuilder;
+package com.ceiba.horario.servicio.testdatabuilder;
 
 public enum HoraType {
     H07_08("07:00 AM - 08:00 AM"),

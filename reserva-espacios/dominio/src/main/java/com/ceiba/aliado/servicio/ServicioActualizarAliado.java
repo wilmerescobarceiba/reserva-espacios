@@ -20,7 +20,7 @@ public class ServicioActualizarAliado {
     }
 
     private void validarExistenciaPrevia(Aliado aliado) {
-        boolean existe = this.repositorioAliado.existeExcluyendoId(aliado.getId(),aliado.getNombre());
+        boolean existe = this.repositorioAliado.existeExcluyendoId(aliado.getId(), aliado.getNombre());
         if(existe) {
             throw new ExcepcionDuplicidad(EL_ALIADO_YA_EXISTE_EN_EL_SISTEMA);
         }

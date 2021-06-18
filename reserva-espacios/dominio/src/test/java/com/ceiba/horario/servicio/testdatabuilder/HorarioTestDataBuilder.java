@@ -1,4 +1,4 @@
-package com.ceiba.reserva.servicio.testdatabuilder;
+package com.ceiba.horario.servicio.testdatabuilder;
 
 import com.ceiba.horario.modelo.entidad.Horario;
 

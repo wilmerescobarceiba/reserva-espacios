@@ -1,4 +1,4 @@
-package com.ceiba.reserva.servicio.testdatabuilder;
+package com.ceiba.aliado.servicio.testdatabuilder;
 
 import com.ceiba.aliado.modelo.entidad.Aliado;
 

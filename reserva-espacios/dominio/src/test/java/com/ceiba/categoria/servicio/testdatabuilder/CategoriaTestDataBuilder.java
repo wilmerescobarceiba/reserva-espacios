@@ -1,4 +1,4 @@
-package com.ceiba.reserva.servicio.testdatabuilder;
+package com.ceiba.categoria.servicio.testdatabuilder;
 
 import com.ceiba.categoria.modelo.entidad.Categoria;
 

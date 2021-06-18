@@ -30,7 +30,7 @@ public interface RepositorioAliado {
     boolean existe(String nombre);
 
     /**
-     * Permite validar si existe un aliado con un  excluyendo un id
+     * Permite validar si existe un aliado con un nombre excluyendo un id
      * @param nombre
      * @return si existe o no
      */
