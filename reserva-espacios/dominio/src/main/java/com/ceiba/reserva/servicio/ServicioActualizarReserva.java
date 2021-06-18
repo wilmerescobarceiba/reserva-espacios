@@ -15,14 +15,9 @@ public class ServicioActualizarReserva {
     }
 
     public void ejecutar(Reserva reserva) {
-        validarExistenciaPrevia(reserva);
-        this.repositorioReserva.actualizar(reserva);
-    }
-
-    private void validarExistenciaPrevia(Reserva reserva) {
-        boolean existe = this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(), reserva.getIdhorario());
-        if(existe) {
+        if(this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(), reserva.getIdhorario())) {
             throw new ExcepcionDuplicidad(LA_RESERVA_YA_EXISTE_EN_EL_SISTEMA);
         }
+        this.repositorioReserva.actualizar(reserva);
     }
 }
