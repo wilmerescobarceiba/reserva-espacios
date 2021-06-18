@@ -13,19 +13,19 @@ public class RepositorioCategoriaMysql implements RepositorioCategoria {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="categoria", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearCategoria;
 
     @SqlStatement(namespace="categoria", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarCategoria;
 
     @SqlStatement(namespace="categoria", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarCategoria;
 
     @SqlStatement(namespace="categoria", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteCategoria;
 
     @SqlStatement(namespace="categoria", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
+    private static String sqlExisteCategoriaExcluyendoId;
 
     public RepositorioCategoriaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -33,7 +33,7 @@ public class RepositorioCategoriaMysql implements RepositorioCategoria {
 
     @Override
     public Long crear(Categoria categoria) {
-        return this.customNamedParameterJdbcTemplate.crear(categoria, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(categoria, sqlCrearCategoria);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class RepositorioCategoriaMysql implements RepositorioCategoria {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarCategoria, paramSource);
     }
 
     @Override
@@ -49,12 +49,12 @@ public class RepositorioCategoriaMysql implements RepositorioCategoria {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombre", nombre);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteCategoria,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Categoria categoria) {
-        this.customNamedParameterJdbcTemplate.actualizar(categoria, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(categoria, sqlActualizarCategoria);
     }
 
     @Override
@@ -62,6 +62,6 @@ public class RepositorioCategoriaMysql implements RepositorioCategoria {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
         paramSource.addValue("nombre", nombre);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteCategoriaExcluyendoId,paramSource, Boolean.class);
     }
 }

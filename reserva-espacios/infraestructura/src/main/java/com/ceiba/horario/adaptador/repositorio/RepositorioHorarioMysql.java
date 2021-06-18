@@ -13,19 +13,19 @@ public class RepositorioHorarioMysql implements RepositorioHorario {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="horario", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearHorario;
 
     @SqlStatement(namespace="horario", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarHorario;
 
     @SqlStatement(namespace="horario", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarHorario;
 
     @SqlStatement(namespace="horario", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteHorario;
 
     @SqlStatement(namespace="horario", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
+    private static String sqlExisteHorarioExcluyendoId;
 
     public RepositorioHorarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -33,7 +33,7 @@ public class RepositorioHorarioMysql implements RepositorioHorario {
 
     @Override
     public Long crear(Horario horario) {
-        return this.customNamedParameterJdbcTemplate.crear(horario, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(horario, sqlCrearHorario);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class RepositorioHorarioMysql implements RepositorioHorario {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarHorario, paramSource);
     }
 
     @Override
@@ -49,12 +49,12 @@ public class RepositorioHorarioMysql implements RepositorioHorario {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("hora", hora);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteHorario,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Horario horario) {
-        this.customNamedParameterJdbcTemplate.actualizar(horario, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(horario, sqlActualizarHorario);
     }
 
     @Override
@@ -62,6 +62,6 @@ public class RepositorioHorarioMysql implements RepositorioHorario {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
         paramSource.addValue("hora", hora);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteHorarioExcluyendoId,paramSource, Boolean.class);
     }
 }

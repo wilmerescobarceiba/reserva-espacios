@@ -25,22 +25,22 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 	private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="reserva", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearReservar;
 
     @SqlStatement(namespace="reserva", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarReservar;
 
     @SqlStatement(namespace="reserva", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarReservar;
 
     @SqlStatement(namespace="reserva", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteReservar;
     
     @SqlStatement(namespace="reserva", value="reservas_dia")
-    private static String reservasDia;
+    private static String reservasDiaReservar;
     
     @SqlStatement(namespace="reserva", value="reservasPorSemana") 
-    private static String sqlReservasPorSemana;
+    private static String sqlReservasPorSemanaReservar;
 
     public RepositorioReservaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -48,7 +48,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 
     @Override
     public Long crear(Reserva reserva) {
-        return this.customNamedParameterJdbcTemplate.crear(reserva, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(reserva, sqlCrearReservar);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarReservar, paramSource);
     }
 
     @Override
@@ -67,12 +67,12 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
         paramSource.addValue(FECHA_LABEL, formatter.format(fecha));
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteReservar,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Reserva reserva) {
-        this.customNamedParameterJdbcTemplate.actualizar(reserva, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(reserva, sqlActualizarReservar);
     }
 
 	@Override
@@ -82,7 +82,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         paramSource.addValue(ID_ESPACIO_LABEL, idespacio);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
         paramSource.addValue(FECHA_LABEL, formatter.format(fecha));
-       return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(reservasDia,paramSource, Long.class);
+       return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(reservasDiaReservar,paramSource, Long.class);
 	}
 	
 	@Override
@@ -93,7 +93,7 @@ public class RepositorioReservaMysql implements RepositorioReserva {
         paramSource.addValue("anio", anioReserva);
         paramSource.addValue("semana", semanaAnioReserva);
         paramSource.addValue("dia", dia);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlReservasPorSemana,paramSource, Integer.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlReservasPorSemanaReservar,paramSource, Integer.class);
 	}
 
     @Override

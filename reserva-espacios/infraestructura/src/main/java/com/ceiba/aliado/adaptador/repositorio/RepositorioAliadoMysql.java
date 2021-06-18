@@ -13,19 +13,19 @@ public class RepositorioAliadoMysql implements RepositorioAliado {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="aliado", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearAliado;
 
     @SqlStatement(namespace="aliado", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarAliado;
 
     @SqlStatement(namespace="aliado", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarAliado;
 
     @SqlStatement(namespace="aliado", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteAliado;
 
     @SqlStatement(namespace="aliado", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
+    private static String sqlExisteAliadoExcluyendoId;
 
     public RepositorioAliadoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -33,7 +33,7 @@ public class RepositorioAliadoMysql implements RepositorioAliado {
 
     @Override
     public Long crear(Aliado aliado) {
-        return this.customNamedParameterJdbcTemplate.crear(aliado, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(aliado, sqlCrearAliado);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class RepositorioAliadoMysql implements RepositorioAliado {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarAliado, paramSource);
     }
 
     @Override
@@ -49,12 +49,12 @@ public class RepositorioAliadoMysql implements RepositorioAliado {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombre", nombre);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteAliado,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Aliado aliado) {
-        this.customNamedParameterJdbcTemplate.actualizar(aliado, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(aliado, sqlActualizarAliado);
     }
 
     @Override
@@ -62,6 +62,6 @@ public class RepositorioAliadoMysql implements RepositorioAliado {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
         paramSource.addValue("nombre", nombre);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteAliadoExcluyendoId,paramSource, Boolean.class);
     }
 }

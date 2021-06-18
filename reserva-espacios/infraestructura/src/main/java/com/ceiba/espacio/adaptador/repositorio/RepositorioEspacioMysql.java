@@ -14,19 +14,19 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="espacio", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearEspacio;
 
     @SqlStatement(namespace="espacio", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarEspacio;
 
     @SqlStatement(namespace="espacio", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarEspacio;
 
     @SqlStatement(namespace="espacio", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteEspacio;
 
     @SqlStatement(namespace="espacio", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
+    private static String sqlExisteEspacioExcluyendoId;
     
     @SqlStatement(namespace="espacio", value="costoPorId") 
     private static String sqlCostoPorId;   
@@ -37,14 +37,14 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
 
     @Override
     public Long crear(Espacio espacio) {
-        return this.customNamedParameterJdbcTemplate.crear(espacio, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(espacio, sqlCrearEspacio);
     }
 
     @Override
     public void eliminar(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarEspacio, paramSource);
     }
 
     @Override
@@ -52,12 +52,12 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombre", nombre);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteEspacio,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(Espacio espacio) {
-        this.customNamedParameterJdbcTemplate.actualizar(espacio, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(espacio, sqlActualizarEspacio);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
         paramSource.addValue("nombre", nombre);
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteEspacioExcluyendoId,paramSource, Boolean.class);
     }
 
 	@Override

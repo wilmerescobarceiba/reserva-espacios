@@ -15,16 +15,16 @@ public class RepositorioEspacioHorarioMysql implements RepositorioEspacioHorario
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="espacio_horario", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearEspacioHorario;
 
     @SqlStatement(namespace="espacio_horario", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarEspacioHorario;
 
     @SqlStatement(namespace="espacio_horario", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarEspacioHorario;
 
     @SqlStatement(namespace="espacio_horario", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteEspacioHorario;
 
     public RepositorioEspacioHorarioMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -32,7 +32,7 @@ public class RepositorioEspacioHorarioMysql implements RepositorioEspacioHorario
 
     @Override
     public Long crear(EspacioHorario espacioHorario) {
-        return this.customNamedParameterJdbcTemplate.crear(espacioHorario, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(espacioHorario, sqlCrearEspacioHorario);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class RepositorioEspacioHorarioMysql implements RepositorioEspacioHorario
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarEspacioHorario, paramSource);
     }
 
     @Override
@@ -49,11 +49,11 @@ public class RepositorioEspacioHorarioMysql implements RepositorioEspacioHorario
         paramSource.addValue("idhorario", idhorario);
         paramSource.addValue("idespacio", idespacio);
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteEspacioHorario,paramSource, Boolean.class);
     }
 
     @Override
     public void actualizar(EspacioHorario espacioHorario) {
-        this.customNamedParameterJdbcTemplate.actualizar(espacioHorario, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(espacioHorario, sqlActualizarEspacioHorario);
     }
 }
