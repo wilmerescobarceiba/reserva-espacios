@@ -18,12 +18,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.ceiba.ApplicationMock;
 import com.ceiba.categoria.comando.ComandoCategoria;
 import com.ceiba.categoria.servicio.testdatabuilder.ComandoCategoriaTestDataBuilder;
-import com.ceiba.usuario.controlador.ComandoControladorUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorUsuario.class)
+@WebMvcTest(ComandoControladorCategoria.class)
 public class ComandoControladorCategoriaTest {
 
 	@Autowired

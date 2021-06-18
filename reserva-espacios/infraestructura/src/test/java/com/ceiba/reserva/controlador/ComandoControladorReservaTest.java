@@ -6,6 +6,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Calendar;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,14 +21,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.ceiba.ApplicationMock;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
-import com.ceiba.usuario.controlador.ComandoControladorUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.Calendar;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationMock.class)
-@WebMvcTest(ComandoControladorUsuario.class)
+@WebMvcTest(ComandoControladorReserva.class)
 public class ComandoControladorReservaTest {
 
 	private static int HORA_INICIO_CREACION_RESERVA = 7;
@@ -57,7 +56,6 @@ public class ComandoControladorReservaTest {
 		}else{
 			mocMvc.perform(post("/reservas").contentType(MediaType.APPLICATION_JSON)
 					.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isBadRequest());
-					//.andExpect(content().json("{'valor': 1}"));
 		}
 	}
 

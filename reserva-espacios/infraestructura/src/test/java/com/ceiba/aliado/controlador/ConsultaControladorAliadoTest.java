@@ -16,11 +16,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.usuario.controlador.ConsultaControladorUsuario;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ConsultaControladorUsuario.class)
+@WebMvcTest(ConsultaControladorAliado.class)
 public class ConsultaControladorAliadoTest {
 
 	@Autowired
@@ -36,9 +35,6 @@ public class ConsultaControladorAliadoTest {
 
     @Test
     public void listar() throws Exception {
-        // arrange
-
-        // act - assert
         mocMvc.perform(get("/aliado")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

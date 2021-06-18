@@ -18,12 +18,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.ceiba.ApplicationMock;
 import com.ceiba.horario.comando.ComandoHorario;
 import com.ceiba.horario.servicio.testdatabuilder.ComandoHorarioTestDataBuilder;
-import com.ceiba.usuario.controlador.ComandoControladorUsuario;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes= ApplicationMock.class)
-@WebMvcTest(ComandoControladorUsuario.class)
+@WebMvcTest(ComandoControladorHorario.class)
 public class ComandoControladorHorarioTest {
 
 	@Autowired
