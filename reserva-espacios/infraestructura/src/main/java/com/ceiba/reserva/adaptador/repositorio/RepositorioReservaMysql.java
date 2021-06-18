@@ -16,7 +16,13 @@ import com.ceiba.reserva.puerto.repositorio.RepositorioReserva;
 @Repository
 public class RepositorioReservaMysql implements RepositorioReserva {
 
-    private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+    private static final String FECHA_LABEL = "fecha";
+
+	private static final String ID_ALIADO_LABEL = "idaliado";
+
+	private static final String ID_ESPACIO_LABEL = "idespacio";
+
+	private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="reserva", value="crear")
     private static String sqlCrear;
@@ -56,10 +62,10 @@ public class RepositorioReservaMysql implements RepositorioReserva {
     @Override
     public boolean existe(Date fecha, Long idespacio, Long idhorario) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();        
-        paramSource.addValue("idespacio", idespacio);
+        paramSource.addValue(ID_ESPACIO_LABEL, idespacio);
         paramSource.addValue("idhorario", idhorario);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
-        paramSource.addValue("fecha", formatter.format(fecha));
+        paramSource.addValue(FECHA_LABEL, formatter.format(fecha));
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
     }
@@ -72,18 +78,18 @@ public class RepositorioReservaMysql implements RepositorioReserva {
 	@Override
 	public Long cantidadReservasDia(Long idaliado, Long idespacio, Date fecha) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idaliado", idaliado);
-        paramSource.addValue("idespacio", idespacio);
+        paramSource.addValue(ID_ALIADO_LABEL, idaliado);
+        paramSource.addValue(ID_ESPACIO_LABEL, idespacio);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");	
-        paramSource.addValue("fecha", formatter.format(fecha));
+        paramSource.addValue(FECHA_LABEL, formatter.format(fecha));
        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(reservasDia,paramSource, Long.class);
 	}
 	
 	@Override
 	public int obtenerReservasEnLaSemana(Long idespacio, Long idaliado, int anioReserva, int semanaAnioReserva, int dia) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("idespacio", idespacio);
-        paramSource.addValue("idaliado", idaliado);
+        paramSource.addValue(ID_ESPACIO_LABEL, idespacio);
+        paramSource.addValue(ID_ALIADO_LABEL, idaliado);
         paramSource.addValue("anio", anioReserva);
         paramSource.addValue("semana", semanaAnioReserva);
         paramSource.addValue("dia", dia);
