@@ -1,5 +1,8 @@
 package com.ceiba.espacio_horario.servicio;
 
+import com.ceiba.espacio_horario.modelo.dto.DtoEspacioHorario;
+import com.ceiba.horario.modelo.dto.DtoHorario;
+import com.ceiba.horario.servicio.testdatabuilder.HoraType;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -9,6 +12,7 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.espacio_horario.modelo.entidad.EspacioHorario;
 import com.ceiba.espacio_horario.puerto.repositorio.RepositorioEspacioHorario;
 import com.ceiba.espacio_horario.servicio.testdatabuilder.EspacioHorarioTestDataBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearEspacioHorarioTest {
 
@@ -27,5 +31,14 @@ public class ServicioCrearEspacioHorarioTest {
 		ServicioCrearEspacioHorario servicioCrearEspacioHorario = new ServicioCrearEspacioHorario(repositorioEspacioHorario);
 		BasePrueba.assertThrows(() -> servicioCrearEspacioHorario.ejecutar(espacioHorario), ExcepcionDuplicidad.class,
 				"El espacioHorario ya existe en el sistema");
+	}
+
+	@Test
+	public void validarCreacionDto(){
+		DtoEspacioHorario espacioHorarioDto = new DtoEspacioHorario(1l,1l,1l);
+
+		assertEquals(1l, espacioHorarioDto.getId());
+		assertEquals(1l, espacioHorarioDto.getIdHorario());
+		assertEquals(1l, espacioHorarioDto.getIdEspacio());
 	}
 }
