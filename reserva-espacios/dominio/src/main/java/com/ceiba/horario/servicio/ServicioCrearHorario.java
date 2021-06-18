@@ -4,7 +4,6 @@ import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.horario.modelo.entidad.Horario;
 import com.ceiba.horario.puerto.repositorio.RepositorioHorario;
 
-
 public class ServicioCrearHorario {
 
     private static final String EL_HORARIO_YA_EXISTE_EN_EL_SISTEMA = "El horario ya existe en el sistema";
@@ -15,15 +14,10 @@ public class ServicioCrearHorario {
         this.repositorioHorario = repositorioHorario;
     }
 
-    public Long ejecutar(Horario horario) {
-        validarExistenciaPrevia(horario);
-        return this.repositorioHorario.crear(horario);
-    }
-
-    private void validarExistenciaPrevia(Horario horario) {
-        boolean existe = this.repositorioHorario.existe(horario.getHora());
-        if(existe) {
+    public Long ejecutar(Horario horario) {        
+        if(this.repositorioHorario.existe(horario.getHora())) {
             throw new ExcepcionDuplicidad(EL_HORARIO_YA_EXISTE_EN_EL_SISTEMA);
         }
+        return this.repositorioHorario.crear(horario);
     }
 }
