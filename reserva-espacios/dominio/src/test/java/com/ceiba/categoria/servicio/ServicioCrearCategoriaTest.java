@@ -1,18 +1,17 @@
 package com.ceiba.categoria.servicio;
 
-import com.ceiba.categoria.modelo.dto.DtoCategoria;
-import com.ceiba.espacio.modelo.dto.DtoEspacio;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
+import com.ceiba.categoria.modelo.dto.DtoCategoria;
 import com.ceiba.categoria.modelo.entidad.Categoria;
 import com.ceiba.categoria.puerto.repositorio.RepositorioCategoria;
 import com.ceiba.categoria.servicio.testdatabuilder.CategoriaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearCategoriaTest {
 

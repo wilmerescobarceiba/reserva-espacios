@@ -1,18 +1,17 @@
 package com.ceiba.espacio_horario.servicio;
 
-import com.ceiba.espacio_horario.modelo.dto.DtoEspacioHorario;
-import com.ceiba.horario.modelo.dto.DtoHorario;
-import com.ceiba.horario.servicio.testdatabuilder.HoraType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.espacio_horario.modelo.dto.DtoEspacioHorario;
 import com.ceiba.espacio_horario.modelo.entidad.EspacioHorario;
 import com.ceiba.espacio_horario.puerto.repositorio.RepositorioEspacioHorario;
 import com.ceiba.espacio_horario.servicio.testdatabuilder.EspacioHorarioTestDataBuilder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearEspacioHorarioTest {
 

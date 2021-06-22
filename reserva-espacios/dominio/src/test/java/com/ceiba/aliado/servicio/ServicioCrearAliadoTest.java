@@ -1,18 +1,17 @@
 package com.ceiba.aliado.servicio;
 
-import com.ceiba.aliado.modelo.dto.DtoAliado;
-import com.ceiba.categoria.modelo.dto.DtoCategoria;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
+import com.ceiba.aliado.modelo.dto.DtoAliado;
 import com.ceiba.aliado.modelo.entidad.Aliado;
 import com.ceiba.aliado.puerto.repositorio.RepositorioAliado;
 import com.ceiba.aliado.servicio.testdatabuilder.AliadoTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearAliadoTest {
 

@@ -1,18 +1,17 @@
 package com.ceiba.espacio.servicio;
 
-import com.ceiba.espacio.modelo.dto.DtoEspacio;
-import com.ceiba.horario.modelo.dto.DtoHorario;
-import com.ceiba.horario.servicio.testdatabuilder.HoraType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import com.ceiba.espacio.modelo.dto.DtoEspacio;
 import com.ceiba.espacio.modelo.entidad.Espacio;
 import com.ceiba.espacio.puerto.repositorio.RepositorioEspacio;
 import com.ceiba.espacio.servicio.testdatabuilder.EspacioTestDataBuilder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearEspacioTest {
 

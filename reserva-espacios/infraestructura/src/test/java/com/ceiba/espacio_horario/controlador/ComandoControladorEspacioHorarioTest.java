@@ -16,7 +16,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.espacio.servicio.testdatabuilder.ComandoEspacioTestDataBuilder;
 import com.ceiba.espacio_horario.comando.ComandoEspacioHorario;
 import com.ceiba.espacio_horario.servicio.testdatabuilder.ComandoEspacioHorarioTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
