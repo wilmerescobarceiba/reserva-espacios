@@ -2,6 +2,8 @@ package com.ceiba.reserva.adaptador.dao;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +17,7 @@ import com.ceiba.reserva.puerto.dao.DaoReserva;
 public class DaoReservaMysql implements DaoReserva {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+    private static final Logger LOGGER = LoggerFactory.getLogger(DaoReservaMysql.class);
 
     @SqlStatement(namespace="reserva", value="listar")
     private static String sqlListar;
@@ -38,6 +41,7 @@ public class DaoReservaMysql implements DaoReserva {
         try {
         	return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlBuscar, parameterSource, new MapeoReserva());
 		} catch (Exception e) {
+            LOGGER.info(e.getMessage());
 			throw new ExcepcionTecnica("El id no pertenece a ninguna reserva");
 		}         
     }
