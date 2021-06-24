@@ -58,6 +58,14 @@ public class ServicioCrearReservaTest {
     }
 
     @Test
+    public void validarReservaYaExiste() {
+        Mockito.when(this.repositorioReserva.existe(reserva.getFecha(), reserva.getIdespacio(),
+                reserva.getIdhorario())).thenReturn(true);
+        servicioCrearReserva = new ServicioCrearReserva(repositorioReserva, repositorioEspacio);
+        BasePrueba.assertThrows(() -> servicioCrearReserva.ejecutar(reserva), ExcepcionDuplicidad.class, "La reserva ya existe en el sistema");
+    }
+
+    @Test
     public void validarTiempoMaximo5HPorDia() {
         Mockito.when(repositorioReserva.cantidadReservasDia(reserva.getIdaliado(), reserva.getIdespacio()
                 , reserva.getFecha())).thenReturn(5l);
