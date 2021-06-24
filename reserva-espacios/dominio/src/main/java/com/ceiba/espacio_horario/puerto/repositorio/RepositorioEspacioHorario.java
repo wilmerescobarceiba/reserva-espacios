@@ -27,8 +27,9 @@ public interface RepositorioEspacioHorario {
 
 	/**
 	 * Permite validar si existe un espacioHorario con un nombre
-	 * 
-	 * @param nombre
+	 *
+	 * @param idhorario
+	 * @param idespacio
 	 * @return si existe o no
 	 */
 	boolean existe(Long idhorario, Long idespacio);

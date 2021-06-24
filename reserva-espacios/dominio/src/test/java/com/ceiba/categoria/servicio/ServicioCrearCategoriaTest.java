@@ -1,17 +1,17 @@
 package com.ceiba.categoria.servicio;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import com.ceiba.BasePrueba;
 import com.ceiba.categoria.modelo.dto.DtoCategoria;
 import com.ceiba.categoria.modelo.entidad.Categoria;
 import com.ceiba.categoria.puerto.repositorio.RepositorioCategoria;
 import com.ceiba.categoria.servicio.testdatabuilder.CategoriaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearCategoriaTest {
 
@@ -30,6 +30,15 @@ public class ServicioCrearCategoriaTest {
 		ServicioCrearCategoria servicioCrearCategoria = new ServicioCrearCategoria(repositorioCategoria);
 		BasePrueba.assertThrows(() -> servicioCrearCategoria.ejecutar(categoria), ExcepcionDuplicidad.class,
 				"La categoria ya existe en el sistema");
+	}
+
+	@Test
+	public void validarCrearCategoriaTest() {
+		Mockito.when(repositorioCategoria.existe(categoria.getNombre())).thenReturn(false);
+		Mockito.when(repositorioCategoria.crear(categoria)).thenReturn(1l);
+
+		ServicioCrearCategoria servicioCrearCategoria = new ServicioCrearCategoria(repositorioCategoria);
+		Assert.assertEquals(1l, servicioCrearCategoria.ejecutar(categoria).longValue());
 	}
 
 	@Test

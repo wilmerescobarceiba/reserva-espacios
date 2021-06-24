@@ -1,17 +1,17 @@
 package com.ceiba.espacio.servicio;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
-
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.espacio.modelo.dto.DtoEspacio;
 import com.ceiba.espacio.modelo.entidad.Espacio;
 import com.ceiba.espacio.puerto.repositorio.RepositorioEspacio;
 import com.ceiba.espacio.servicio.testdatabuilder.EspacioTestDataBuilder;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServicioCrearEspacioTest {
 
@@ -22,6 +22,15 @@ public class ServicioCrearEspacioTest {
 	public void inicializar() throws Exception {
 		repositorioEspacio = Mockito.mock(RepositorioEspacio.class);
 		espacio = new EspacioTestDataBuilder().conId(1l).build();
+	}
+
+	@Test
+	public void validarCreaEspacioTest() {
+		Mockito.when(repositorioEspacio.existe(espacio.getNombre())).thenReturn(false);
+		Mockito.when(repositorioEspacio.crear(espacio)).thenReturn(1l);
+
+		ServicioCrearEspacio servicioCrearEspacio = new ServicioCrearEspacio(repositorioEspacio);
+		Assert.assertEquals(1l, servicioCrearEspacio.ejecutar(espacio).longValue());
 	}
 
 	@Test
