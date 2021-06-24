@@ -85,8 +85,7 @@ public class ServicioCrearReserva {
 		Long cantidadReservasDia = this.repositorioReserva.cantidadReservasDia(reserva.getIdaliado(),
 				reserva.getIdespacio(), reserva.getFecha());
 
-		Double total = (cantidadReservasDia > 0) ? costoEspacio + costoEspacio * PORCENTAJE_HORA_ADICIONAL
-				: costoEspacio;
+		Double total = (cantidadReservasDia > 0) ? (costoEspacio + (costoEspacio * PORCENTAJE_HORA_ADICIONAL)): costoEspacio;
 		
 		return total + calcularCostoMayorA2DiasEnSemana(reserva, total) + calcularReservaFinDeSemana(reserva, total);
 	}
