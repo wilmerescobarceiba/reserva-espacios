@@ -29,7 +29,7 @@ public class Reserva {
 		validarObligatorio(idhorario, SE_DEBE_INGRESAR_ID_HORARIO);
 
 		this.id = id;
-		this.fecha = fecha;
+		this.fecha = (Date) fecha.clone();
 		this.idaliado = idaliado;
 		this.idespacio = idespacio;
 		this.idhorario = idhorario;
