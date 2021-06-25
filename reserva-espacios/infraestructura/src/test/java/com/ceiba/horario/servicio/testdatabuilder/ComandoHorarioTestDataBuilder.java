@@ -9,7 +9,7 @@ public class ComandoHorarioTestDataBuilder {
 	private HoraType hora;
 
 	public ComandoHorarioTestDataBuilder() {
-		hora = HoraType.H01_02;
+		hora = HoraType.H06_07;
 	}
 
 	public ComandoHorario build() {

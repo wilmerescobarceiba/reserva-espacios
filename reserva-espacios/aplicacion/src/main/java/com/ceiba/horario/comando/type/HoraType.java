@@ -1,6 +1,7 @@
 package com.ceiba.horario.comando.type;
 
 public enum HoraType {
+    H06_07("06:00 AM - 07:00 AM"),
     H07_08("07:00 AM - 08:00 AM"),
     H08_09("08:00 AM - 08:00 AM"),
     H09_10("09:00 AM - 10:00 AM"),

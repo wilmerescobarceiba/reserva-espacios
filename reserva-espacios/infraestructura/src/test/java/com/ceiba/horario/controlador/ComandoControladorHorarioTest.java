@@ -37,7 +37,7 @@ public class ComandoControladorHorarioTest {
 
 		mocMvc.perform(post("/horarios").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(horario))).andExpect(status().isOk())
-				.andExpect(content().json("{'valor': 2}"));
+				.andExpect(content().json("{'valor': 10}"));
 	}
 
 	@Test

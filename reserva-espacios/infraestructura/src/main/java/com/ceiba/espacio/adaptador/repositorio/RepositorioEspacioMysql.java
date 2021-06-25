@@ -16,6 +16,9 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
     @SqlStatement(namespace="espacio", value="crear")
     private static String sqlCrearEspacio;
 
+    @SqlStatement(namespace="espacio", value="insertarEspacioHorario")
+    private static String sqlInsertarEspacioHorario;
+
     @SqlStatement(namespace="espacio", value="actualizar")
     private static String sqlActualizarEspacio;
 
@@ -37,7 +40,9 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
 
     @Override
     public Long crear(Espacio espacio) {
-        return this.customNamedParameterJdbcTemplate.crear(espacio, sqlCrearEspacio);
+        Long id = this.customNamedParameterJdbcTemplate.crear(espacio, sqlCrearEspacio);
+        insertarHorariosEnEspacio(id);
+        return id;
     }
 
     @Override
@@ -58,6 +63,13 @@ public class RepositorioEspacioMysql implements RepositorioEspacio {
     @Override
     public void actualizar(Espacio espacio) {
         this.customNamedParameterJdbcTemplate.actualizar(espacio, sqlActualizarEspacio);
+    }
+
+
+    private void insertarHorariosEnEspacio(Long idespacio) {
+        MapSqlParameterSource paramSource = new MapSqlParameterSource();
+        paramSource.addValue("idespacio", idespacio);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlInsertarEspacioHorario, paramSource);
     }
 
     @Override

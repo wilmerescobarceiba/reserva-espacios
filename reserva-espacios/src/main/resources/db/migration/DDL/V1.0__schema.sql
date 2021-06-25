@@ -47,3 +47,12 @@ idespacio int(11) not null,
 idhorario int(11) not null,
  primary key (id)
 );
+insert into horario( hora) values ('07:00 AM - 08:00 AM');
+insert into horario( hora) values ('08:00 AM - 08:00 AM');
+insert into horario( hora) values ('09:00 AM - 10:00 AM');
+insert into horario( hora) values ('10:00 AM - 11:00 AM');
+insert into horario( hora) values ('11:00 AM - 12:00 M');
+insert into horario( hora) values ('01:00 PM - 02:00 PM');
+insert into horario( hora) values ('02:00 PM - 03:00 PM');
+insert into horario( hora) values ('03:00 PM - 04:00 PM');
+insert into horario( hora) values ('04:00 PM - 05:00 PM');
