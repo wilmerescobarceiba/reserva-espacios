@@ -48,7 +48,7 @@ idhorario int(11) not null,
  primary key (id)
 );
 insert into horario( hora) values ('07:00 AM - 08:00 AM');
-insert into horario( hora) values ('08:00 AM - 08:00 AM');
+insert into horario( hora) values ('08:00 AM - 09:00 AM');
 insert into horario( hora) values ('09:00 AM - 10:00 AM');
 insert into horario( hora) values ('10:00 AM - 11:00 AM');
 insert into horario( hora) values ('11:00 AM - 12:00 M');

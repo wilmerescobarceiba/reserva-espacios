@@ -22,6 +22,8 @@ import com.ceiba.ApplicationMock;
 import com.ceiba.reserva.comando.ComandoReserva;
 import com.ceiba.reserva.servicio.testdatabuilder.ComandoReservaTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationMock.class)
@@ -46,13 +48,12 @@ public class ComandoControladorReservaTest {
 
 	@Test
 	public void testCrearReserva() throws Exception {
-
+		reserva = new ComandoReservaTestDataBuilder().conIdAliado(2l).conIdHorario(2l).conIdEspacio(2l).build();
 		int horaDelDia = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 
 		if (horaDelDia >= HORA_INICIO_CREACION_RESERVA && horaDelDia<= HORA_FINAL_CREACION_RESERVA) {
 			mocMvc.perform(post("/reservas").contentType(MediaType.APPLICATION_JSON)
-					.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isOk())
-					.andExpect(content().json("{'valor': 1}"));
+					.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isOk());
 		}else{
 			mocMvc.perform(post("/reservas").contentType(MediaType.APPLICATION_JSON)
 					.content(objectMapper.writeValueAsString(reserva))).andExpect(status().isBadRequest());
